@@ -1,20 +1,25 @@
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'dart:async';
 import '../Model/User_info.dart';
 
 class SharedPreferencesHelper {
-  SharedPreferencesHelper._privateConstructor(){
-    _init();
+  static SharedPreferencesHelper? _instance;
+  SharedPreferencesHelper._internal(){
+    _initSharedPreferences();
+
   }
-
-  static final SharedPreferencesHelper instance =
-      SharedPreferencesHelper._privateConstructor();
-
-  late SharedPreferences _prefs;
-
-  Future<void> _init() async {
+  Future<void> _initSharedPreferences() async {
     _prefs = await SharedPreferences.getInstance();
   }
+  late SharedPreferences _prefs;
+
+  factory SharedPreferencesHelper() {
+    if (_instance == null) {
+      _instance = SharedPreferencesHelper._internal();
+    }
+    return _instance!;
+  }
+
 
   Future<User_info> getCurrentUserInfo() async {
     return User_info(
@@ -25,6 +30,9 @@ class SharedPreferencesHelper {
     );
   }
   bool get isLogin => _prefs.getBool('isLogin') ?? false;
+  void setLogin(bool value) {
+    _prefs.setBool('isLogin', value);
+  }
   bool setCurrentUserInfo(User_info user) {
     _prefs.setString('name', user.name!);
     _prefs.setString('email', user.email!);

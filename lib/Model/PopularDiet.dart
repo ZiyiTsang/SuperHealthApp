@@ -1,6 +1,4 @@
-import 'dart:ui';
 
-import 'package:flutter/material.dart';
 class PopularDietModel {
   String name;
   String image_paht;

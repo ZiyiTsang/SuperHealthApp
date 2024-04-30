@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:third/Component/RoundButton.dart';
+
+import '../../Utils/SharePref.dart';
 
 class ProfileDetailPage extends StatelessWidget {
   @override
@@ -76,6 +79,20 @@ class ProfileDetailPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  RoundButton(
+                    text: "Logout",
+                    press: () {
+                      SharedPreferencesHelper().clearUser();
+                      Navigator.pushReplacementNamed(context, '/login');
+                    },
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    scale: 0.7,
+                  ),
+
                   SizedBox(
                     height: 20,
                   ),

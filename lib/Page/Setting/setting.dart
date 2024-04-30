@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:third/Page/Setting/profileDetail.dart';
 import 'package:third/PageSturcture/subPage.dart';
+import 'package:third/Utils/NetworkUtils.dart';
 
+import '../../Utils/Func.dart';
 import '../Class/classPage.dart';
 import '../Class/classPage2.dart';
 import '../Login/Default_Login.dart';
@@ -103,7 +105,7 @@ class Setting extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text('login page',
+                child: Text('Network',
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
@@ -111,12 +113,10 @@ class Setting extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                      DefaultLogin(),
-                  ));
+
+              NetworkUtils().try_network().then((value) {
+                showNetworkStatusDialog(context, value);
+              });
             },
           ),
         ],
@@ -124,3 +124,6 @@ class Setting extends StatelessWidget {
     );
   }
 }
+
+
+
