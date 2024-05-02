@@ -17,16 +17,17 @@ Future<void> main() async {
         title: 'Ziyi App' ,
         theme: ThemeData(useMaterial3: true,textTheme: GoogleFonts.robotoSlabTextTheme(),),
          home: SplashScreen(key: Key('splash')),
+         debugShowCheckedModeBanner: false,
          // home: mainScreen(),
-        routes: {
-          '/home': (context) => mainScreen(),
-          '/lottie': (context) => SplashScreen(key: Key('splash')),
-          '/login': (context) => LoginPage(),
-          '/signup': (context) => SignupPage(),
-          "/default_login": (context) => DefaultLogin(),
-
-        }
+        routes: _routes,
     )
   );
 }
+Map<String,WidgetBuilder> _routes = {
+  '/home': (context) => mainScreen(),
+  '/lottie': (context) => SplashScreen(key: Key('splash')),
+  '/login': (context) => LoginPage(),
+  '/signup': (context) => SignupPage(),
+  "/default_login": (context) => DefaultLogin(),
+};
 

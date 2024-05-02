@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_validator/form_validator.dart';
+import 'package:third/Utils/Func.dart';
 
 import '../../Component/RoundButton.dart';
 import '../../PageSturcture/mainscreen.dart';
@@ -100,12 +101,7 @@ class _SignupState extends State<SignupPage> {
                   });
                 }
                 else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(text),
-                      backgroundColor: Colors.red,
-                    ),
-                  );
+                  showSnackbar(context, text);
                 }
               },
               color: Colors.purple,

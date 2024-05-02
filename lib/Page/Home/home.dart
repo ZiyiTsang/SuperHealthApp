@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:marquee/marquee.dart';
 import 'package:third/Model/Category.dart';
 import 'package:third/Model/Diet.dart';
 import 'package:third/Model/PopularDiet.dart';
@@ -27,11 +29,33 @@ class _homePageState extends State<HomePage> {
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: ListView(
         children: [
-          _searchField(),
+          _run_hourse(),
+          // _searchField(),
           _categoryField(),
           _dietField(),
           _popularDietField(),
         ],
+      ),
+    );
+  }
+
+  Container _run_hourse() {
+    return Container(
+      width: double.infinity,
+      height: 50,
+      child: Marquee(
+        text: 'Some sample text that takes some space.',
+        style: TextStyle(fontWeight: FontWeight.bold),
+        scrollAxis: Axis.horizontal,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        blankSpace: 20.0,
+        velocity: 100.0,
+        pauseAfterRound: Duration(seconds: 1),
+        startPadding: 10.0,
+        accelerationDuration: Duration(seconds: 1),
+        accelerationCurve: Curves.linear,
+        decelerationDuration: Duration(milliseconds: 500),
+        decelerationCurve: Curves.easeOut,
       ),
     );
   }
@@ -198,7 +222,6 @@ class _homePageState extends State<HomePage> {
                   SizedBox(
                     width: 10,
                   ),
-
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -217,7 +240,6 @@ class _homePageState extends State<HomePage> {
                     ],
                   )
                 ],
-
               ),
               decoration: BoxDecoration(
                 color: Colors.white,

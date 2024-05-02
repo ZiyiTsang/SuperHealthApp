@@ -47,8 +47,18 @@ class SharedPreferencesHelper {
     _prefs.remove('password_hash');
     _prefs.remove('phone');
     _prefs.remove('isLogin');
+    _prefs.remove('token');
   }
   void clearEverything(){
     _prefs.clear();
+  }
+  void setToken(String token){
+    print("Set token:$token");
+    _prefs.setString('token', token);
+  }
+  String? getToken(){
+    String? token=_prefs.getString('token');
+    print("get token:$token");
+    return token;
   }
 }

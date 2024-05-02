@@ -31,13 +31,14 @@ class _SubPageState extends State<SubPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: _color,
-        title: Text(Page_title),
+        title: Text(Page_title,style: TextStyle(color: Colors.white,fontWeight:FontWeight.bold,fontFamily: Theme.of(context).textTheme.bodyLarge!.fontFamily),),
         centerTitle: true,
         actions: [
           PopupMenuButton(
+            color: Colors.white,
             itemBuilder: (BuildContext context) {
               return [
-                PopupMenuItem(
+                const PopupMenuItem(
                   child: Text('Back to Home Page'),
                   value: 'home',
                 ),
@@ -51,7 +52,7 @@ class _SubPageState extends State<SubPage> {
           ),
         ],
         leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(Icons.arrow_back, color: Colors.white,),
             onPressed: () {
               Navigator.pop(context);
             }),

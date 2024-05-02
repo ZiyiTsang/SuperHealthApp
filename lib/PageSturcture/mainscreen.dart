@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:third/Page/Clinic/Clinic.dart';
+import 'package:third/Page/Home/HomeScreen.dart';
 import 'package:third/Page/Home/home_lecture.dart';
-import 'package:third/Page/Notification/notification.dart';
-import 'package:third/Page/Setting/setting.dart';
+
+import 'package:third/Page/Setting/Setting.dart';
+import 'package:third/PageSturcture/subPage.dart';
 import '../Page/Message/Contacts.dart';
+import '../Page/Other/notification.dart';
+import '../Utils/Func.dart';
 
 class mainScreen extends StatefulWidget {
   @override
@@ -13,10 +18,10 @@ class mainScreen extends StatefulWidget {
 
 class _mainScreenState extends State<mainScreen> {
   int _currentPageIndex = 0;
-  List<String> _pageTitles = ['Home', 'Notifications', 'Messages', 'More'];
+  List<String> _pageTitles = ['Home', 'Clinic', 'Messages', 'More'];
   List<Color> _theme_colors = [
     Colors.blue,
-    Colors.yellow,
+    Colors.purple,
     Colors.pinkAccent,
     Colors.green
   ];
@@ -26,6 +31,24 @@ class _mainScreenState extends State<mainScreen> {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search_sharp, color: Colors.white,size: 30,),
+            onPressed: () {
+              showSnackbar(context, 'Stay tuned for search feature');
+            },
+
+          ),
+          IconButton(
+            icon: Badge(child: Icon(Icons.notifications_active_rounded, color: Colors.white,size: 30,),),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SubPage(pageTitle: 'Notification', pageInstance: NotificationScreen(), color: Colors.purple)),
+              );
+            },
+
+          ),],
         centerTitle: true,
         title: Text(_pageTitles[_currentPageIndex],
             style: GoogleFonts.courgette(
@@ -38,8 +61,8 @@ class _mainScreenState extends State<mainScreen> {
         backgroundColor: this._theme_colors[_currentPageIndex],
       ),
       body: <Widget>[
-        HomePage(),
-        NotificationPage(),
+        HomeScreen(),
+        ClinicPage(),
         Contacts(),
         Setting(),
       ].elementAt(_currentPageIndex),
@@ -52,6 +75,7 @@ class _mainScreenState extends State<mainScreen> {
           });
         },
         indicatorColor: this._theme_colors[_currentPageIndex],
+
         selectedIndex: _currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
@@ -61,8 +85,8 @@ class _mainScreenState extends State<mainScreen> {
           ),
           NavigationDestination(
             icon:
-                Badge(label: Text('2'), child: Icon(Icons.notifications_sharp)),
-            label: 'Notifications',
+                Badge(label: Text('2'), child: Icon(Icons.health_and_safety_rounded)),
+            label: 'Clinic',
           ),
           NavigationDestination(
             icon: Badge(

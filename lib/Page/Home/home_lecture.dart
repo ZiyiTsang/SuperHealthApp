@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:marquee/marquee.dart';
 import 'package:third/Model/Category.dart';
 import 'package:third/Model/Diet.dart';
 import 'package:third/Model/PopularDiet.dart';
@@ -33,11 +34,28 @@ class _homePageState extends State<HomePage> {
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: ListView(
         children: [
+          _run_hourse(),
           _searchField(),
           _categoryField(),
           _dietField(),
           _popularDietField(),
         ],
+      ),
+    );
+  }
+  Container _run_hourse() {
+    return Container(
+      width: double.infinity,
+      height: 50,
+      child: Marquee(
+        text: "Today News:    1.Cats insist on jogging every day, aiming to become the world's first marathon champion cat. 2.Elephants abandon weightlifting in favor of yoga, calling it swaying yoga . 3.Pandas try to learn boxing, but every punch they throw is defeated by their own cuteness. 4.Rabbits jog every morning, aiming to become the fastest legs in the forest.",
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.yellow[800]),
+        textScaleFactor: 1.2,
+        scrollAxis: Axis.horizontal,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        blankSpace: 40.0,
+        velocity: 200.0,
+
       ),
     );
   }

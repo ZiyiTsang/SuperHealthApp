@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:third/PageSturcture/mainscreen.dart';
 
+import '../Utils/NetworkUtils.dart';
 import '../Utils/SharePref.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -30,6 +31,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     SharedPreferencesHelper();
+    NetworkUtils().try_network();
     return Scaffold(
       body: Container(
         width: double.infinity,

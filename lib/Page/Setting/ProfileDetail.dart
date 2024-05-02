@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:third/Component/RoundButton.dart';
+import 'package:third/Utils/NetworkUtils.dart';
 
 import '../../Utils/SharePref.dart';
 
@@ -86,6 +87,7 @@ class ProfileDetailPage extends StatelessWidget {
                     text: "Logout",
                     press: () {
                       SharedPreferencesHelper().clearUser();
+                      NetworkUtils().reset_interceptor();
                       Navigator.pushReplacementNamed(context, '/login');
                     },
                     color: Colors.blue,

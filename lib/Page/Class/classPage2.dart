@@ -29,7 +29,7 @@ class classPage2 extends StatelessWidget {
                 Container(
                   width: 150,
                   height: 150,
-                  child: Image.asset(contacts[index].image_path),
+                  child: Image.asset(contacts[index].imagePath),
                   constraints: BoxConstraints(
                     maxHeight: 150,
                     maxWidth: 150,

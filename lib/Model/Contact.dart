@@ -1,73 +1,68 @@
+import 'package:faker_dart/faker_dart.dart';
+
 class Contact {
+  int id;
   String name;
   String email;
   String phone;
   String address;
-  String image_path;
+  String imagePath;
 
-  Contact({required this.name,
+  Contact({
+    required this.id,
+    required this.name,
     required this.email,
     required this.phone,
     required this.address,
-    required this.image_path,});
+    required this.imagePath,
+  });
+  static Map<int, Contact> contactDatabase={};
+  static Map<int, Contact> getContactDatabase(){
+    if(contactDatabase.isEmpty){
+      contactDatabase=getAllContactsAsMap();
+    }
+    return contactDatabase;
+  }
 
+  static Map<int, Contact> getAllContactsAsMap() {
+
+    final faker = Faker.instance;
+    Map<int, Contact> contactsMap = {};
+
+    for (int i = 1; i <= 10; i++) {
+      final contact = Contact(
+        id: i,
+        name: faker.name.fullName(),
+        email: faker.internet.email(),
+        phone: '123456',
+        address: faker.address.county()+faker.address.cityName()+faker.address.secondaryAddress(),
+        imagePath: "assets/images/ProfileImage/$i.jpg",
+      );
+
+      contactsMap[contact.id] = contact;
+    }
+    return contactsMap;
+  }
   static List<Contact> get_all_contact() {
-    return <Contact>[
-      Contact(
-          name: 'John Doe',
-          email: '6666666666@slsls.cn',
-          phone: '6666666666',
-          address: '6666666666',
-          image_path:"assets/images/people-1.jpg"),
-      //make 10 random contact
-      Contact(
-          name: 'John Doe',
-          email: '6666666666@slsls.cn',
-          phone: '6666666666',
-          address: '6666666666',
-          image_path:"assets/images/people-2.jpg"),
-      Contact(
-          name: 'John Doe',
-          email: '6666666666@slsls.cn',
-          phone: '6666666666',
-          address: '6666666666',
-          image_path:"assets/images/people-3.jpg"),
-      Contact(
-          name: 'John Doe',
-          email: '6666666666@slsls.cn',
-          phone: '6666666666',
-          address: '6666666666',
-          image_path:"assets/images/people-4.jpg"),
-      Contact(
-          name: 'John Doe',
-          email: '6666666666@slsls.cn',
-          phone: '6666666666',
-          address: '6666666666',
-          image_path:"assets/images/people-5.jpg"),
-      Contact(
-          name: 'John Doe',
-          email: '6666666666@slsls.cn',
-          phone: '6666666666',
-          address: '6666666666',
-          image_path:"assets/images/people-1.jpg"),
-      Contact(
-          name: 'John Doe',
-          email: '6666666666@slsls.cn',
-          phone: '6666666666',
-          address: '6666666666',
-          image_path:"assets/images/people-1.jpg"),
-      Contact(
-          name: 'John Doe',
-          email: '6666666666@slsls.cn',
-          phone: '6666666666',
-          address: '6666666666',
-          image_path:"assets/images/people-1.jpg"),
-      Contact(
-          name: 'John Doe',
-          email: '6666666666@slsls.cn',
-          phone: '6666666666',
-          address: '6666666666',
-          image_path:"assets/images/people-1.jpg"),
-    ];
+    final faker = Faker.instance;
+    List<Contact> contacts = [];
+
+    for (int i = 1; i <= 10; i++) {
+      final contact = Contact(
+        id: i,
+        name: faker.name.fullName(),
+        email: faker.internet.email(),
+        phone: faker.phoneNumber.phoneNumber(),
+        address: faker.address.county()+faker.address.cityName()+faker.address.secondaryAddress(),
+        imagePath: "assets/images/people-1.jpg",
+      );
+      contacts.add(contact);
+      print("Contact $i");
+      print("Name $i: ${contact.name}");
+      print("Email $i: ${contact.email}");
+      print("Phone $i: ${contact.phone}");
+      print("Address $i: ${contact.address}");
+    }
+    return contacts;
   }
 }
