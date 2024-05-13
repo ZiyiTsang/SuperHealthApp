@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:third/PageSturcture/subPage.dart';
-
-import '../Page/Class/ProfileCard.dart';
 
 class NavDrawer extends StatelessWidget {
   @override
@@ -46,13 +43,13 @@ class NavDrawer extends StatelessWidget {
             leading: const Icon(Icons.contacts),
             title: const Text('Contact'),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SubPage(
-                          pageTitle: 'Profile_Page',
-                          pageInstance: ProfileCard(),
-                          color: Colors.green)));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => SubPage(
+              //             pageTitle: 'Profile_Page',
+              //             pageInstance: ProfileCard(),
+              //             color: Colors.green)));
             },
           ),
         ],
