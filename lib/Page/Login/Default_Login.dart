@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:third/Component/RoundButton.dart';
 
@@ -24,10 +22,11 @@ class DefaultLogin extends StatelessWidget {
                 height: size.height * 0.38,
               ),
               Text(
-                "Welcome to My App",
-                style: GoogleFonts.robotoSlab(
-                  fontSize: 30,
+                "Super Health",
+                style: GoogleFonts.oleoScript(
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
+                  color: Colors.orange,
                 ),
               ),
               SizedBox(

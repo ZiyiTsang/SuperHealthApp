@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SubPage extends StatefulWidget {
@@ -34,21 +33,23 @@ class _SubPageState extends State<SubPage> {
         title: Text(Page_title,style: TextStyle(color: Colors.white,fontWeight:FontWeight.bold,fontFamily: Theme.of(context).textTheme.bodyLarge!.fontFamily),),
         centerTitle: true,
         actions: [
-          PopupMenuButton(
-            color: Colors.white,
-            itemBuilder: (BuildContext context) {
-              return [
-                const PopupMenuItem(
-                  child: Text('Back to Home Page'),
-                  value: 'home',
-                ),
-              ];
-            },
-            onSelected: (String value) {
-              if (value == 'home') {
-                Navigator.pushReplacementNamed(context, '/home');
-              }
-            },
+          Container(
+            child: PopupMenuButton(
+              icon: Icon(Icons.more_vert, color: Colors.white),
+              itemBuilder: (BuildContext context) {
+                return [
+                  const PopupMenuItem(
+                    child: Text('Back to Home Page'),
+                    value: 'home',
+                  ),
+                ];
+              },
+              onSelected: (String value) {
+                if (value == 'home') {
+                  Navigator.pushReplacementNamed(context, '/home');
+                }
+              },
+            ),
           ),
         ],
         leading: IconButton(

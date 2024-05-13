@@ -1,17 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:third/Model/Appcolor.dart';
+import 'package:third/Page/News/NewsPage.dart';
 import 'package:third/Page/Setting/ProfileDetail.dart';
 import 'package:third/PageSturcture/subPage.dart';
-import 'package:third/Utils/NetworkUtils.dart';
+import 'package:third/Utils/SharePref.dart';
 
 import '../../Utils/Func.dart';
-import '../Class/classPage.dart';
-import '../Class/classPage2.dart';
-import '../Class/classPage3.dart';
+import '../Class/HomePageClass.dart';
 import '../Login/Default_Login.dart';
 import 'Policy.dart';
+
 class Setting extends StatefulWidget {
   @override
   _SettingState createState() => _SettingState();
@@ -20,6 +19,7 @@ class Setting extends StatefulWidget {
 class _SettingState extends State<Setting> {
   bool _chat_Message = true;
   bool _system_information = true;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -47,190 +47,270 @@ class _SettingState extends State<Setting> {
     );
   }
 
-  Container _realContent(BuildContext context) {
+  SingleChildScrollView _realContent(BuildContext context) {
     Size media = MediaQuery.of(context).size;
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(20),
-      child: Column(
-        children: [
-          profileCard(context, media),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(color: Colors.black12, blurRadius: 2)
-                ]
+    return SingleChildScrollView(
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            profileCard(context, media),
+            SizedBox(
+              height: 20,
             ),
-            child: Column(
-
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Notification",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: Theme.of(context).textTheme.titleMedium?.fontFamily)),
-                SizedBox(height: media.width * 0.02),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Container(
+                width: double.infinity,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black12, blurRadius: 2)
+                    ]),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text("Notification",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.fontFamily)),
+                    SizedBox(height: media.width * 0.02),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [Icon(Icons.notifications_active_outlined),
-                      SizedBox(width: media.width * 0.02),
-                      Text("Chat Message",
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.black87,
-                              fontWeight: FontWeight.normal,
-                              fontFamily: Theme.of(context).textTheme.bodyLarge?.fontFamily)),],),
-
-                    CupertinoSwitch(
-                      value: _chat_Message,
-                      onChanged: (value) {
-                        setState(() {
-                          _chat_Message= value;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(height: media.width * 0.01),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(Icons.notifications_outlined),
-                        SizedBox(width: media.width * 0.02),
-                        Text("System Information",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black87,
-                                fontWeight: FontWeight.normal,
-                                fontFamily: Theme.of(context).textTheme.bodyLarge?.fontFamily)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(Icons.notifications_active_outlined),
+                            SizedBox(width: media.width * 0.02),
+                            Text("Chat Message",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.normal,
+                                    fontFamily: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.fontFamily)),
+                          ],
+                        ),
+                        CupertinoSwitch(
+                          value: _chat_Message,
+                          onChanged: (value) {
+                            setState(() {
+                              _chat_Message = value;
+                            });
+                          },
+                        ),
                       ],
                     ),
-                    CupertinoSwitch(
-                      value: _system_information,
-                      onChanged: (value) {
-                        setState(() {
-                          _system_information= value;
-                        });
-                      },
+                    SizedBox(height: media.width * 0.01),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.notifications_outlined),
+                            SizedBox(width: media.width * 0.02),
+                            Text("System Information",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.normal,
+                                    fontFamily: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.fontFamily)),
+                          ],
+                        ),
+                        CupertinoSwitch(
+                          value: _system_information,
+                          onChanged: (value) {
+                            setState(() {
+                              _system_information = value;
+                            });
+                          },
+                        ),
+                      ],
                     ),
                   ],
-                ),
-
-              ],
-            )
-          ),
-          SizedBox(
-            height: media.width * 0.03,
-          ),
-          Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: const [
-                    BoxShadow(color: Colors.black12, blurRadius: 2)
-                  ]
-              ),
-              child: Column(
-
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Setting",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: Theme.of(context).textTheme.titleMedium?.fontFamily)),
-                  SizedBox(height: media.width * 0.02),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [Icon(Icons.edit_document),
-                          SizedBox(width: media.width * 0.02),
-                          Text("Privacy Policy",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black87,
-                                  fontWeight: FontWeight.normal,
-                                  fontFamily: Theme.of(context).textTheme.bodyLarge?.fontFamily)),],),
-                      IconButton(onPressed:(){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  SubPage(pageTitle: "Privacy Policy",
-                                      pageInstance: PolicyPage(),
-                                      color: Colors.blue),
-                            ));
-                      } , icon: Icon(Icons.arrow_forward_ios_outlined)),
-
-                    ],
-                  ),
-                  SizedBox(height: media.width * 0.01),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.email_outlined),
-                          SizedBox(width: media.width * 0.02),
-                          Text("Contact Us",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black87,
-                                  fontWeight: FontWeight.normal,
-                                  fontFamily: Theme.of(context).textTheme.bodyLarge?.fontFamily)),
-                        ],
-                      ),
-                      IconButton(onPressed:(){
-                        showDialog_custom(context, "Contact Us", "Email:CME1909120@xmu.edu.my");
-                      } , icon: Icon(Icons.arrow_forward_ios_outlined)),
-                    ],
-                  ),
-
-                ],
-              )
-          ),
-          SizedBox(
-            height: media.width * 0.03,
-          ),
-          //logout
-          Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: const [
-                    BoxShadow(color: Colors.black12, blurRadius: 2)
-                  ]
-              ),
+                )),
+            SizedBox(
+              height: media.width * 0.03,
+            ),
+            Container(
+                width: double.infinity,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black12, blurRadius: 2)
+                    ]),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Support",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.fontFamily)),
+                    SizedBox(height: media.width * 0.02),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(Icons.document_scanner_outlined),
+                            SizedBox(width: media.width * 0.02),
+                            Text("Privacy Policy",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.normal,
+                                    fontFamily: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.fontFamily)),
+                          ],
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SubPage(
+                                        pageTitle: "Privacy Policy",
+                                        pageInstance: PolicyPage(),
+                                        color: Colors.green),
+                                  ));
+                            },
+                            icon: Icon(Icons.arrow_forward_ios_outlined)),
+                      ],
+                    ),
+                    SizedBox(height: media.width * 0.01),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.email_outlined),
+                            SizedBox(width: media.width * 0.02),
+                            Text("Contact Us",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.normal,
+                                    fontFamily: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.fontFamily)),
+                          ],
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              showDialog_custom(context, "Contact Us",
+                                  "Email:CME1909120@xmu.edu.my");
+                            },
+                            icon: Icon(Icons.arrow_forward_ios_outlined)),
+                      ],
+                    ),
+                    SizedBox(height: media.width * 0.01),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.app_shortcut_outlined),
+                            SizedBox(width: media.width * 0.02),
+                            Text("Check Update",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.normal,
+                                    fontFamily: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.fontFamily)),
+                          ],
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              showDialog_custom(context, "App Version",
+                                  "Your application is up to date!");
+                            },
+                            icon: Icon(Icons.arrow_forward_ios_outlined)),
+                      ],
+                    ),
+                    SizedBox(height: media.width * 0.01),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.library_books_outlined),
+                            SizedBox(width: media.width * 0.02),
+                            Text("Health News",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.normal,
+                                    fontFamily: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.fontFamily)),
+                          ],
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SubPage(
+                                        pageTitle: "Health News",
+                                        pageInstance: NewsPage(),
+                                        color: Colors.green),
+                                  ));
+                            },
+                            icon: Icon(Icons.arrow_forward_ios_outlined)),
+                      ],
+                    ),
+                  ],
+                )),
+            SizedBox(
+              height: media.width * 0.03,
+            ),
+            //logout
+            Container(
+                width: double.infinity,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black12, blurRadius: 2)
+                    ]),
                 child: InkWell(
-                  onTap: (){
+                  onTap: () {
+                    SharedPreferencesHelper().setLogin(false);
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              SubPage(pageTitle: "Login",
-                                  pageInstance: DefaultLogin(),
-                                  color: Colors.blue),
+                          builder: (context) => DefaultLogin(),
                         ),
-                            (route) => false);
+                        (route) => false);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -242,103 +322,100 @@ class _SettingState extends State<Setting> {
                               fontSize: 15,
                               color: Colors.black87,
                               fontWeight: FontWeight.normal,
-                              fontFamily: Theme.of(context).textTheme.bodyLarge?.fontFamily)),
-
+                              fontFamily: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.fontFamily)),
                     ],
                   ),
+                )),
 
-                )
-
-          )
-
-          // GestureDetector(
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(10.0),
-          //     child: Padding(
-          //       padding: const EdgeInsets.all(10.0),
-          //       child: Text('上课',
-          //           style: TextStyle(
-          //               fontSize: 25,
-          //               fontWeight: FontWeight.bold,
-          //               fontFamily: 'Roboto')),
-          //     ),
-          //   ),
-          //   onTap: () {
-          //     Navigator.push(
-          //         context,
-          //         MaterialPageRoute(
-          //           builder: (context) =>
-          //               SubPage(pageTitle: "666",
-          //                 pageInstance: classPage(),
-          //                 color: Colors.blue,),
-          //         ));
-          //   },
-          // ),
-          // GestureDetector(
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(10.0),
-          //     child: Padding(
-          //       padding: const EdgeInsets.all(10.0),
-          //       child: Text('上课2',
-          //           style: TextStyle(
-          //               fontSize: 25,
-          //               fontWeight: FontWeight.bold,
-          //               fontFamily: 'Roboto')),
-          //     ),
-          //   ),
-          //   onTap: () {
-          //     Navigator.push(
-          //         context,
-          //         MaterialPageRoute(
-          //           builder: (context) =>
-          //               SubPage(pageTitle: "666",
-          //                   pageInstance: classPage2(),
-          //                   color: Colors.blue),
-          //         ));
-          //   },
-          // ),
-          // GestureDetector(
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(10.0),
-          //     child: Padding(
-          //       padding: const EdgeInsets.all(10.0),
-          //       child: Text('Network',
-          //           style: TextStyle(
-          //               fontSize: 25,
-          //               fontWeight: FontWeight.bold,
-          //               fontFamily: 'Roboto')),
-          //     ),
-          //   ),
-          //   onTap: () {
-          //     NetworkUtils().try_network().then((value) {
-          //       showNetworkStatusDialog(context, value);
-          //     });
-          //   },
-          // ),
-          // GestureDetector(
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(10.0),
-          //     child: Padding(
-          //       padding: const EdgeInsets.all(10.0),
-          //       child: Text('上课3',
-          //           style: TextStyle(
-          //               fontSize: 25,
-          //               fontWeight: FontWeight.bold,
-          //               fontFamily: 'Roboto')),
-          //     ),
-          //   ),
-          //   onTap: () {
-          //     Navigator.push(
-          //         context,
-          //         MaterialPageRoute(
-          //           builder: (context) =>
-          //               SubPage(pageTitle: "Class",
-          //                   pageInstance: classPage3(),
-          //                   color: Colors.green),
-          //         ));
-          //   },
-          // ),
-        ],
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text('上课',
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Roboto')),
+                ),
+              ),
+              onTap: () async {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Homepage_class(),
+                    ));
+              },
+            ),
+            // GestureDetector(
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(10.0),
+            //     child: Padding(
+            //       padding: const EdgeInsets.all(10.0),
+            //       child: Text('上课2',
+            //           style: TextStyle(
+            //               fontSize: 25,
+            //               fontWeight: FontWeight.bold,
+            //               fontFamily: 'Roboto')),
+            //     ),
+            //   ),
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) =>
+            //               SubPage(pageTitle: "666",
+            //                   pageInstance: classPage2(),
+            //                   color: Colors.blue),
+            //         ));
+            //   },
+            // ),
+            // GestureDetector(
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(10.0),
+            //     child: Padding(
+            //       padding: const EdgeInsets.all(10.0),
+            //       child: Text('Network',
+            //           style: TextStyle(
+            //               fontSize: 25,
+            //               fontWeight: FontWeight.bold,
+            //               fontFamily: 'Roboto')),
+            //     ),
+            //   ),
+            //   onTap: () {
+            //     NetworkUtils().try_network().then((value) {
+            //       showNetworkStatusDialog(context, value);
+            //     });
+            //   },
+            // ),
+            // GestureDetector(
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(10.0),
+            //     child: Padding(
+            //       padding: const EdgeInsets.all(10.0),
+            //       child: Text('上课3',
+            //           style: TextStyle(
+            //               fontSize: 25,
+            //               fontWeight: FontWeight.bold,
+            //               fontFamily: 'Roboto')),
+            //     ),
+            //   ),
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) =>
+            //               SubPage(pageTitle: "Class",
+            //                   pageInstance: classPage3(),
+            //                   color: Colors.green),
+            //         ));
+            //   },
+            // ),
+          ],
+        ),
       ),
     );
   }
@@ -350,10 +427,10 @@ GestureDetector profileCard(Context, Size media) {
       Navigator.push(
           Context,
           MaterialPageRoute(
-            builder: (Context) =>
-                SubPage(pageTitle: "Account",
-                    pageInstance: ProfileDetailPage(),
-                    color: Colors.blue),
+            builder: (Context) => SubPage(
+                pageTitle: "Account",
+                pageInstance: ProfileDetailPage(),
+                color: Colors.green),
           ));
     },
     child: Container(
@@ -374,7 +451,7 @@ GestureDetector profileCard(Context, Size media) {
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         fontFamily:
-                        Theme.of(Context).textTheme.bodyLarge?.fontFamily)),
+                            Theme.of(Context).textTheme.bodyLarge?.fontFamily)),
                 SizedBox(height: media.width * 0.02),
                 Divider(
                   color: Colors.black87,
@@ -389,19 +466,19 @@ GestureDetector profileCard(Context, Size media) {
                         color: Colors.black87,
                         fontWeight: FontWeight.normal,
                         fontFamily:
-                        Theme.of(Context).textTheme.bodyLarge?.fontFamily)),
+                            Theme.of(Context).textTheme.bodyLarge?.fontFamily)),
                 Text("Ip Address: Malaysia",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black87,
                         fontWeight: FontWeight.normal,
                         fontFamily:
-                        Theme.of(Context).textTheme.bodyLarge?.fontFamily)),
+                            Theme.of(Context).textTheme.bodyLarge?.fontFamily)),
               ]),
           CircleAvatar(
             radius: 50,
             backgroundImage: Image.network(
-                "https://th.bing.com/th?id=OIP.plN1OWIkI9w5kqGCso6Z-AHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2")
+                    "https://th.bing.com/th?id=OIP.plN1OWIkI9w5kqGCso6Z-AHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2")
                 .image,
           ),
         ],

@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:third/PageSturcture/mainscreen.dart';
 
 import '../Utils/NetworkUtils.dart';
+import '../Utils/NetworkUtils_News.dart';
 import '../Utils/SharePref.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -30,11 +30,12 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    SharedPreferencesHelper();
-    NetworkUtils().try_network();
+    NetworkUtils();
+    NetworkUtilsNews();
     return Scaffold(
       body: Container(
-        width: double.infinity,
+      color: Colors.white,
+      width: double.infinity,
         height: double.infinity,
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -44,8 +45,8 @@ class _SplashScreenState extends State<SplashScreen>
             Lottie.asset(
               'assets/File/Animation_2.json',
               controller: _controller,
-              height: MediaQuery.of(context).size.height * 0.5,
-              width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.6,
+            width: MediaQuery.of(context).size.width * 0.8,
               animate: true,
               repeat: true,
               onLoaded: (composition) {
@@ -64,9 +65,11 @@ class _SplashScreenState extends State<SplashScreen>
                   });
               },
             ),
-            Text('Loading...', style: GoogleFonts.robotoSlab(
+          Text(
+            'Loading..',
+            style: GoogleFonts.robotoSlab(
               color: Colors.black,
-              fontSize: 30,
+              fontSize: 42,
             ),)
           ],
         ),

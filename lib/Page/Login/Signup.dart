@@ -1,12 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:third/Utils/Func.dart';
 
 import '../../Component/RoundButton.dart';
-import '../../PageSturcture/mainscreen.dart';
 
 
 class SignupPage extends StatefulWidget {
@@ -93,16 +89,16 @@ class _SignupState extends State<SignupPage> {
           RoundButton(
               text: 'Send OTP',
               press: () {
-                String? text=validate_email(_Controller.text);
-                if (text == null) {
+                //String? text=validate_email(_Controller.text);
+                if (true) {
                   setState(() {
                     currentStep += 1;
                     _Controller.clear();
                   });
                 }
-                else {
-                  showSnackbar(context, text);
-                }
+                // else {
+                //   showSnackbar(context, text);
+                // }
               },
               color: Colors.purple,
               textColor: Colors.white),
@@ -184,21 +180,21 @@ class _SignupState extends State<SignupPage> {
           RoundButton(
               text: 'Verify OTP',
               press: () {
-                String? text=validate_OPT(_Controller.text);
-                if (text == null) {
+                // String? text=validate_OPT(_Controller.text);
+                if (true) {
                   setState(() {
                     currentStep += 1;
                     _Controller.clear();
                   });
                 }
-                else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(text),
-                      backgroundColor: Colors.red,
-                    ),
-                  );
-                }
+                // else {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     SnackBar(
+                //       content: Text(text),
+                //       backgroundColor: Colors.red,
+                //     ),
+                //   );
+                // }
               },
               color: Colors.purple,
               textColor: Colors.white),
@@ -283,10 +279,10 @@ class _SignupState extends State<SignupPage> {
               text: 'Registrar',
               press: () {
                 if (_Controller.text == _Controller_2.text) {
-                  Fluttertoast.showToast(msg: 'Registration successful, please Login!');
+                  // Fluttertoast.showToast(msg: 'Registration successful, please Login!');
+                  Fluttertoast.showToast(msg: 'Registration successful!');
                   Navigator.pushReplacementNamed(
-                      context,
-                      '/login');
+                      context, '/home');
                 }
                 else {
                   ScaffoldMessenger.of(context).showSnackBar(

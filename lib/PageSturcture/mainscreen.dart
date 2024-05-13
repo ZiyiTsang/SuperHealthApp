@@ -1,15 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:third/Page/Clinic/Clinic.dart';
 import 'package:third/Page/Home/HomeScreen.dart';
-import 'package:third/Page/Home/home_lecture.dart';
-
 import 'package:third/Page/Setting/Setting.dart';
 import 'package:third/PageSturcture/subPage.dart';
+
 import '../Page/Message/Contacts.dart';
 import '../Page/Other/notification.dart';
-import '../Utils/Func.dart';
 
 class mainScreen extends StatefulWidget {
   @override
@@ -18,7 +15,7 @@ class mainScreen extends StatefulWidget {
 
 class _mainScreenState extends State<mainScreen> {
   int _currentPageIndex = 0;
-  List<String> _pageTitles = ['Home', 'Clinic', 'Messages', 'More'];
+  List<String> _pageTitles = ['Home', 'Doctor', 'Message', 'More'];
   List<Color> _theme_colors = [
     Colors.blue,
     Colors.purple,
@@ -32,19 +29,17 @@ class _mainScreenState extends State<mainScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            icon: Icon(Icons.search_sharp, color: Colors.white,size: 30,),
-            onPressed: () {
-              showSnackbar(context, 'Stay tuned for search feature');
-            },
 
-          ),
           IconButton(
             icon: Badge(child: Icon(Icons.notifications_active_rounded, color: Colors.white,size: 30,),),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SubPage(pageTitle: 'Notification', pageInstance: NotificationScreen(), color: Colors.purple)),
+                MaterialPageRoute(
+                    builder: (context) => SubPage(
+                        pageTitle: 'Notification',
+                        pageInstance: NotificationScreen(),
+                        color: Colors.green)),
               );
             },
 
@@ -84,14 +79,13 @@ class _mainScreenState extends State<mainScreen> {
             label: 'Home',
           ),
           NavigationDestination(
-            icon:
-                Badge(label: Text('2'), child: Icon(Icons.health_and_safety_rounded)),
-            label: 'Clinic',
+            icon: Icon(Icons.accessibility_new),
+            label: 'Doctor',
           ),
           NavigationDestination(
             icon: Badge(
               label: Text('2'),
-              child: Icon(Icons.messenger_sharp),
+              child: Icon(Icons.messenger_rounded),
             ),
             label: 'Messages',
           ),

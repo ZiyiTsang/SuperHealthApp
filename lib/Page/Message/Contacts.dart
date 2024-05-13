@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:third/Utils/Func.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -90,20 +88,20 @@ class _ContactsState extends State<Contacts> {
             ),
           );
 
-
         return Container(
-            padding: EdgeInsets.all(5),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  GestureDetector(
-                    child: Row(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Expanded(
+                flex: 9,
+                child: GestureDetector(
+                  child: Row(
                       children: <Widget>[
                         CircleAvatar(
                           radius: 30,
-                          backgroundImage:
-                              getImage(recent_contact[index].avatarUrl),
-                        ),
+                        backgroundImage:
+                            getImage(recent_contact[index].avatarUrl),
+                      ),
                         SizedBox(
                           width: 10,
                         ),
@@ -116,54 +114,61 @@ class _ContactsState extends State<Contacts> {
                                   ? recent_contact[index].name.substring(0, 18) + '...'
                                   : recent_contact[index].name,
                               style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                               ),
-                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                             Text(
                               recent_contact[index].message.length > 25
                                   ? recent_contact[index].message.substring(0, 25) + '...'
                                   : recent_contact[index].message,
                               style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.normal,
+                              fontSize: 13,
+                              fontWeight: FontWeight.normal,
                                 color: Colors.black87,
                               ),
-                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                           ],
                         ),
                       ],
                     ),
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SubPage(
-                                    pageTitle: recent_contact[index].name,
-                                    pageInstance: ChatPage(),
-                                    color: Colors.pinkAccent,
-                                  )));
-                    },
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SubPage(
+                          pageTitle: recent_contact[index].name,
+                          pageInstance: ChatPage(),
+                          color: Colors.pinkAccent,
+                        ),
+                      ),
+                    );
+                  },
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
+              ),
+              Expanded(
+                flex: 3,
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      //小绿点，显示在线
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SubPage(
-                                    pageTitle: recent_contact[index].name,
-                                    pageInstance: ContactDetail(
-                                      person:
-                                          getUserById(recent_contact[index].id),
-                                    ),
-                                    color: Colors.pinkAccent),
-                              ));
-                        },
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SubPage(
+                              pageTitle: recent_contact[index].name,
+                              pageInstance: ContactDetail(
+                                person: getUserById(recent_contact[index].id),
+                              ),
+                              color: Colors.pinkAccent,
+                            ),
+                          ),
+                        );
+                      },
                         child: Icon(
                           Icons.medical_information_rounded,
                           size: 30,
@@ -177,16 +182,19 @@ class _ContactsState extends State<Contacts> {
                         onTap: () {
                           launch("tel://214324234");
                         },
-                        child: Icon(Icons.call,
-                            size: 30, color: Colors.pinkAccent),
-                      ),
+                      child:
+                          Icon(Icons.call, size: 30, color: Colors.pinkAccent),
+                    ),
                       SizedBox(
                         width: 5,
                       ),
                       dot,
                     ],
-                  )
-                ]));
+                ),
+              )
+            ],
+          ),
+        );
       },
       itemExtent: 80,
     );

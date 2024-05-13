@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:third/Component/RoundButton.dart';
-import 'package:third/Utils/NetworkUtils.dart';
 import 'package:third/Utils/SharePref.dart';
 
 import '../../PageSturcture/mainscreen.dart';
-import '../../Utils/Func.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -105,21 +102,21 @@ class _LoginPageState extends State<LoginPage> {
               RoundButton(
                 text: 'Login',
                 press: () async{
-                  Future<bool> network_available=NetworkUtils().try_network();
-                  String? text = validate_email(username);
-                  if (text != null) {
-                    showSnackbar(context, text);
-                    return;
-                  }
-                  if(!await network_available){
-                    showNetworkStatusDialog(context, false);
-                    return;
-                  }
-                  bool loginSuccess = await NetworkUtils().login(username, password);
-                  if (!loginSuccess) {
-                    showSnackbar(context, "Wrong username or password");
-                    return;
-                  }
+                  // Future<bool> network_available=NetworkUtils().try_network();
+                  // String? text = validate_email(username);
+                  // if (text != null) {
+                  //   showSnackbar(context, text);
+                  //   return;
+                  // }
+                  // if(!await network_available){
+                  //   showNetworkStatusDialog(context, false);
+                  //   return;
+                  // }
+                  // bool loginSuccess = await NetworkUtils().login(username, password);
+                  // if (!loginSuccess) {
+                  //   showSnackbar(context, "Wrong username or password");
+                  //   return;
+                  // }
                   SharedPreferencesHelper().setLogin(true);
                   Navigator.pushAndRemoveUntil(
                       context,

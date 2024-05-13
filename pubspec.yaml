@@ -52,6 +52,9 @@ dependencies:
   simple_animation_progress_bar: ^1.8.2
   simple_circular_progress_bar: ^1.0.2
   dotted_dashed_line: ^0.0.3
+  table_calendar: ^3.1.1
+  http: ^1.2.1
+
 
 
 dev_dependencies:
@@ -85,6 +88,7 @@ flutter:
     - assets/images/Workout/
     - assets/icons/
     - assets/images/DoctorProfile/
+    - assets/images/NewsImage/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
