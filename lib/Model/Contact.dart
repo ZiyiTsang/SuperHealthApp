@@ -54,14 +54,9 @@ class Contact {
         email: faker.internet.email(),
         phone: faker.phoneNumber.phoneNumber(),
         address: faker.address.county()+faker.address.cityName()+faker.address.secondaryAddress(),
-        imagePath: "assets/images/people-1.jpg",
+        imagePath: "assets/images/ProfileImage/$i.jpg",
       );
       contacts.add(contact);
-      print("Contact $i");
-      print("Name $i: ${contact.name}");
-      print("Email $i: ${contact.email}");
-      print("Phone $i: ${contact.phone}");
-      print("Address $i: ${contact.address}");
     }
     return contacts;
   }

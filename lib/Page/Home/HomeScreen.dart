@@ -537,7 +537,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 height: media.height * 0.3,
                 width: double.maxFinite,
-                child: BarChartCustom(), //有bug，assg1先放着吧
+                child: BarChartCustom(), //有bug
               ),
               SizedBox(height: media.width * 0.05),
             ],

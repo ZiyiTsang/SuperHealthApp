@@ -13,13 +13,13 @@ class Contacts extends StatefulWidget {
 }
 
 class _ContactsState extends State<Contacts> {
-  List<RecentContact> recent_contact = [];
-
+  List<RecentContact> recent_contact = RecentContact.getRecentContact();
+  late List<RecentContact> displayContacts;
+  bool _displaySearch = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    recent_contact = RecentContact.getRecentContact();
+    displayContacts = recent_contact;
   }
 
   @override
@@ -62,13 +62,42 @@ class _ContactsState extends State<Contacts> {
                       fontStyle: FontStyle.italic,
                     ),
                   ),
-                  Icon(Icons.search),
+                  GestureDetector(
+                    child: Icon(
+                      _displaySearch ? Icons.close : Icons.search,
+                      size: 30,
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _displaySearch = !_displaySearch;
+                        displayContacts = recent_contact;
+                      });
+                    },
+                  )
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(top: 10),
-              height: 500,
+            _displaySearch
+                ? Container(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Search',
+                        prefixIcon: Icon(Icons.search),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          displayContacts = recent_contact
+                              .where((element) => element.name
+                                  .toLowerCase()
+                                  .contains(value.toLowerCase()))
+                              .toList();
+                        });
+                      },
+                    ),
+                  )
+                : Container(),
+            Expanded(
               child: _displayContacts(),
             )
           ],
@@ -77,14 +106,16 @@ class _ContactsState extends State<Contacts> {
 
   ListView _displayContacts() {
     return ListView.builder(
-      itemCount: recent_contact.length,
+      itemCount: displayContacts.length,
       itemBuilder: (context, index) {
           var dot=Container(
             width: 10,
             height: 10,
             decoration: BoxDecoration(
-              color: recent_contact[index].status == 'online' ? Colors.green : Colors.grey,
-              borderRadius: BorderRadius.circular(5),
+            color: displayContacts[index].status == 'online'
+                ? Colors.green
+                : Colors.grey,
+            borderRadius: BorderRadius.circular(5),
             ),
           );
 
@@ -100,7 +131,7 @@ class _ContactsState extends State<Contacts> {
                         CircleAvatar(
                           radius: 30,
                         backgroundImage:
-                            getImage(recent_contact[index].avatarUrl),
+                            getImage(displayContacts[index].avatarUrl),
                       ),
                         SizedBox(
                           width: 10,
@@ -110,20 +141,24 @@ class _ContactsState extends State<Contacts> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              recent_contact[index].name.length > 18
-                                  ? recent_contact[index].name.substring(0, 18) + '...'
-                                  : recent_contact[index].name,
-                              style: TextStyle(
+                            displayContacts[index].name.length > 18
+                                ? displayContacts[index].name.substring(0, 18) +
+                                    '...'
+                                : displayContacts[index].name,
+                            style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               ),
                             overflow: TextOverflow.ellipsis,
                           ),
                             Text(
-                              recent_contact[index].message.length > 25
-                                  ? recent_contact[index].message.substring(0, 25) + '...'
-                                  : recent_contact[index].message,
-                              style: TextStyle(
+                            displayContacts[index].message.length > 25
+                                ? displayContacts[index]
+                                        .message
+                                        .substring(0, 25) +
+                                    '...'
+                                : displayContacts[index].message,
+                            style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.normal,
                                 color: Colors.black87,
@@ -139,7 +174,7 @@ class _ContactsState extends State<Contacts> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => SubPage(
-                          pageTitle: recent_contact[index].name,
+                          pageTitle: displayContacts[index].name,
                           pageInstance: ChatPage(),
                           color: Colors.pinkAccent,
                         ),
@@ -160,9 +195,9 @@ class _ContactsState extends State<Contacts> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => SubPage(
-                              pageTitle: recent_contact[index].name,
+                              pageTitle: displayContacts[index].name,
                               pageInstance: ContactDetail(
-                                person: getUserById(recent_contact[index].id),
+                                person: getUserById(displayContacts[index].id),
                               ),
                               color: Colors.pinkAccent,
                             ),
