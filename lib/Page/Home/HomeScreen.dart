@@ -527,17 +527,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: media.width * 0.05),
-              Container(
-                decoration: BoxDecoration(
-                    color: MyColors.whiteColor,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(color: Colors.black12, blurRadius: 2)
-                    ]),
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                height: media.height * 0.3,
-                width: double.maxFinite,
-                child: BarChartCustom(), //有bug
+              Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: MyColors.whiteColor,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(color: Colors.black12, blurRadius: 2)
+                        ]),
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                    height: media.height * 0.3,
+                    width: double.maxFinite,
+                    child: BarChartCustom(), //有bug
+                  ),
+                  Positioned(
+                    right: 10,
+                    top: 10,
+                    child: Opacity(
+                      opacity: 0.5,
+                      child: Image.asset(
+                        "assets/images/Medal.jpg",
+                        width: media.width * 0.13,
+                      ),
+                    ),
+                  )
+                ],
               ),
               SizedBox(height: media.width * 0.05),
             ],

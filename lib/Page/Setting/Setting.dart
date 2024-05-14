@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:third/Model/Appcolor.dart';
-import 'package:third/Page/News/NewsPage.dart';
 import 'package:third/Page/Setting/ProfileDetail.dart';
 import 'package:third/PageSturcture/subPage.dart';
 import 'package:third/Utils/SharePref.dart';
@@ -22,7 +22,6 @@ class _SettingState extends State<Setting> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
         color: Colors.green,
@@ -165,127 +164,129 @@ class _SettingState extends State<Setting> {
                                 .textTheme
                                 .titleMedium
                                 ?.fontFamily)),
-                    SizedBox(height: media.width * 0.02),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                    SizedBox(height: media.width * 0.03),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SubPage(
+                                    pageTitle: "",
+                                    pageInstance: PolicyPage(),
+                                    color: Colors.green)));
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Icon(Icons.document_scanner_outlined),
+                              SizedBox(width: media.width * 0.02),
+                              Text("Privacy Policy",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.normal,
+                                      fontFamily: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge
+                                          ?.fontFamily)),
+                            ],
+                          ),
+                          Icon(Icons.arrow_forward_ios_outlined),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: media.width * 0.05),
+                    InkWell(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(Icons.document_scanner_outlined),
-                            SizedBox(width: media.width * 0.02),
-                            Text("Privacy Policy",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.normal,
-                                    fontFamily: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge
-                                        ?.fontFamily)),
+                            Row(
+                              children: [
+                                Icon(Icons.email_outlined),
+                                SizedBox(width: media.width * 0.02),
+                                Text("Contact Us",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.black87,
+                                        fontWeight: FontWeight.normal,
+                                        fontFamily: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.fontFamily)),
+                              ],
+                            ),
+                            Icon(Icons.arrow_forward_ios_outlined),
                           ],
                         ),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SubPage(
-                                        pageTitle: "Privacy Policy",
-                                        pageInstance: PolicyPage(),
-                                        color: Colors.green),
-                                  ));
-                            },
-                            icon: Icon(Icons.arrow_forward_ios_outlined)),
-                      ],
+                        onTap: () {
+                          showDialog_custom(context, "Contact Us",
+                              "Email:cme1909120@xmu,edu.my");
+                        }),
+                    SizedBox(height: media.width * 0.05),
+                    InkWell(
+                      onTap: () {
+                        showDialog_custom(context, "Version", "Up to date");
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.app_shortcut_outlined),
+                              SizedBox(width: media.width * 0.02),
+                              Text("Check Update",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.normal,
+                                      fontFamily: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge
+                                          ?.fontFamily)),
+                            ],
+                          ),
+                          Icon(Icons.arrow_forward_ios_outlined),
+                        ],
+                      ),
                     ),
-                    SizedBox(height: media.width * 0.01),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(Icons.email_outlined),
-                            SizedBox(width: media.width * 0.02),
-                            Text("Contact Us",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.normal,
-                                    fontFamily: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge
-                                        ?.fontFamily)),
-                          ],
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              showDialog_custom(context, "Contact Us",
-                                  "Email:CME1909120@xmu.edu.my");
-                            },
-                            icon: Icon(Icons.arrow_forward_ios_outlined)),
-                      ],
+                    SizedBox(height: media.width * 0.05),
+                    InkWell(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.library_books_outlined),
+                              SizedBox(width: media.width * 0.02),
+                              Text("Health News",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.normal,
+                                      fontFamily: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge
+                                          ?.fontFamily)),
+                            ],
+                          ),
+                          Icon(Icons.arrow_forward_ios_outlined),
+                        ],
+                      ),
+                      onTap: () {
+                        Fluttertoast.showToast(
+                            msg: "New Feature Coming Soon!",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.black87,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                      },
                     ),
-                    SizedBox(height: media.width * 0.01),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(Icons.app_shortcut_outlined),
-                            SizedBox(width: media.width * 0.02),
-                            Text("Check Update",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.normal,
-                                    fontFamily: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge
-                                        ?.fontFamily)),
-                          ],
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              showDialog_custom(context, "App Version",
-                                  "Your application is up to date!");
-                            },
-                            icon: Icon(Icons.arrow_forward_ios_outlined)),
-                      ],
-                    ),
-                    SizedBox(height: media.width * 0.01),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(Icons.library_books_outlined),
-                            SizedBox(width: media.width * 0.02),
-                            Text("Health News",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.normal,
-                                    fontFamily: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge
-                                        ?.fontFamily)),
-                          ],
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SubPage(
-                                        pageTitle: "Health News",
-                                        pageInstance: NewsPage(),
-                                        color: Colors.green),
-                                  ));
-                            },
-                            icon: Icon(Icons.arrow_forward_ios_outlined)),
-                      ],
-                    ),
+                    SizedBox(height: media.width * 0.03),
                   ],
                 )),
             SizedBox(
@@ -423,13 +424,12 @@ GestureDetector profileCard(Context, Size media) {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("John Doe",
+                Text("Ziyi ZENG",
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         fontFamily:
                             Theme.of(Context).textTheme.bodyLarge?.fontFamily)),
-                SizedBox(height: media.width * 0.02),
                 Divider(
                   color: Colors.black87,
                   height: 10,
@@ -437,7 +437,7 @@ GestureDetector profileCard(Context, Size media) {
                   indent: 0,
                   endIndent: 0,
                 ),
-                Text("Email:123456@qq.com",
+                Text("CME1909120@xmu.edu.my",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black87,

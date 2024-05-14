@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../Utils/NetworkUtils_News.dart';
 
 class NewsPage extends StatefulWidget {
+  //assg2的功能，assg1里先藏起来。
   const NewsPage({Key? key}) : super(key: key);
 
   @override
@@ -72,12 +73,12 @@ class _NewsPageState extends State<NewsPage> {
 
   Widget _buildNewsList() {
     return Column(children: [
-      Container(
-        height: 60,
-        margin: EdgeInsets.all(5),
-        padding: EdgeInsets.all(5),
-        child: Container(),
-      ),
+      // Container(
+      //   height: 60,
+      //   margin: EdgeInsets.all(5),
+      //   padding: EdgeInsets.all(5),
+      //   child: Container(),
+      // ),
       Expanded(
           child: ListView.builder(
         itemCount: news.length,

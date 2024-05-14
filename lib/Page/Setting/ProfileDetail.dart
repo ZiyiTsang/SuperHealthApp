@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:third/Component/RoundButton.dart';
 import 'package:third/Utils/NetworkUtils.dart';
@@ -27,9 +26,9 @@ class ProfileDetailPage extends StatelessWidget {
                         .image,
                   ),
                   Text(
-                    'Name: John Doe',
+                    'Ziyi ZENG',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
