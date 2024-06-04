@@ -1,16 +1,9 @@
-# third
+# SuperHealth
 
-A new Flutter project.
+This is a Flutter project design for health purpose on Android Platform.
+<br>
+![这是图片](https://i.postimg.cc/J45jYHGG/Snipaste-2024-06-04-17-19-16.png "SuperHealth")
 
-## Getting Started
+## CopyRight
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ZENG ZIYI & XMUM
