@@ -7,7 +7,6 @@ import 'package:third/PageSturcture/subPage.dart';
 import 'package:third/Utils/SharePref.dart';
 
 import '../../Utils/Func.dart';
-import '../Class/HomePageClass.dart';
 import '../Login/Default_Login.dart';
 import 'Policy.dart';
 
@@ -330,68 +329,6 @@ class _SettingState extends State<Setting> {
                     ],
                   ),
                 )),
-
-            GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text('我爱上课！！',
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Roboto')),
-                ),
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomePageClass(),
-                    ));
-              },
-            ),
-            // GestureDetector(
-            //   child: Padding(
-            //     padding: const EdgeInsets.all(10.0),
-            //     child: Padding(
-            //       padding: const EdgeInsets.all(10.0),
-            //       child: Text('Network',
-            //           style: TextStyle(
-            //               fontSize: 25,
-            //               fontWeight: FontWeight.bold,
-            //               fontFamily: 'Roboto')),
-            //     ),
-            //   ),
-            //   onTap: () {
-            //     NetworkUtils().try_network().then((value) {
-            //       showNetworkStatusDialog(context, value);
-            //     });
-            //   },
-            // ),
-            // GestureDetector(
-            //   child: Padding(
-            //     padding: const EdgeInsets.all(10.0),
-            //     child: Padding(
-            //       padding: const EdgeInsets.all(10.0),
-            //       child: Text('上课3',
-            //           style: TextStyle(
-            //               fontSize: 25,
-            //               fontWeight: FontWeight.bold,
-            //               fontFamily: 'Roboto')),
-            //     ),
-            //   ),
-            //   onTap: () {
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) =>
-            //               SubPage(pageTitle: "Class",
-            //                   pageInstance: classPage3(),
-            //                   color: Colors.green),
-            //         ));
-            //   },
-            // ),
           ],
         ),
       ),

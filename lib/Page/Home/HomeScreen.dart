@@ -601,11 +601,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   "Welcome Back ~",
                   style: GoogleFonts.oleoScript(
                     color: MyColors.primaryColor1,
-                    fontSize: 28,
+                    fontSize: 26,
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(height: media.width * 0.005),
+                SizedBox(height: media.width * 0.00),
                 Text(
                   "To do:",
                   style: TextStyle(
@@ -614,7 +614,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(height: media.width * 0.01),
+                SizedBox(height: media.width * 0.008),
                 TodoItem(title: "Go to the gym"),
                 TodoItem(title: "Run 5km"),
               ],
