@@ -584,7 +584,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Container welcome_card(media) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      height: media.width * 0.4,
+      height: media.width * 0.42,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(media.width * 0.065),
@@ -595,6 +595,7 @@ class _HomeScreenState extends State<HomeScreen> {
             flex: 6,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
