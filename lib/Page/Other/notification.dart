@@ -55,7 +55,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           return NotificationRow(nObj: nObj);
         }),
         separatorBuilder: (context, index) {
-          return SizedBox(height: 2);
+          return SizedBox(height: 5);
         },
         itemCount: notificationArr.length);
   }

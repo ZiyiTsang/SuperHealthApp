@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class EmbedMap extends StatefulWidget {
@@ -11,6 +12,7 @@ class EmbedMap extends StatefulWidget {
 }
 
 class EmbedMapState extends State<EmbedMap> {
+  //bug待修
   bool _isLoading = true;
 
   Container buildShied(context) {
@@ -67,8 +69,16 @@ class EmbedMapState extends State<EmbedMap> {
         tilt: 59.440717697143555,
         zoom: 19.151926040649414);
     Future<void> _goToTheLake() async {
-      final GoogleMapController controller = await _controller.future;
-      await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+      // final GoogleMapController controller = await _controller.future;
+      // await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));//google tutorial看起来没用
+      Fluttertoast.showToast(
+          msg: "New Feature Coming Soon in Assg 2!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
 
     return Stack(

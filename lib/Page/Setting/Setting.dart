@@ -391,9 +391,8 @@ GestureDetector profileCard(Context, Size media) {
               ]),
           CircleAvatar(
             radius: 50,
-            backgroundImage: Image.network(
-                    "https://th.bing.com/th?id=OIP.plN1OWIkI9w5kqGCso6Z-AHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2")
-                .image,
+            backgroundImage:
+                Image.asset('assets/images/ProfileImage/9.jpg').image,
           ),
         ],
       ),

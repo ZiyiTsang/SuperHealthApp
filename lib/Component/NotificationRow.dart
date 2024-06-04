@@ -7,24 +7,21 @@ class NotificationRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0.6,
-      borderOnForeground: true,
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-        child: Row(
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 2)]),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Row(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(30),
               child: Image.asset(
                 nObj["image"].toString(),
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
+              width: 60,
+              height: 60,
+              fit: BoxFit.cover,
               ),
             ),
             const SizedBox(
@@ -35,15 +32,15 @@ class NotificationRow extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      nObj["title"].toString().length > 30
-                          ? nObj["title"].toString().substring(0, 30) + "..."
-                          : nObj["title"].toString(),
+                nObj["title"].toString().length > 28
+                    ? nObj["title"].toString().substring(0, 28) + "..."
+                    : nObj["title"].toString(),
                       style: TextStyle(
                           fontFamily: Theme.of(context).textTheme.titleMedium!.fontFamily,
                           color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20),
-                    ),
+                    fontWeight: FontWeight.w200,
+                    fontSize: 18),
+              ),
                     Text(
                       nObj["time"].toString(),
                       style: TextStyle(
@@ -56,7 +53,6 @@ class NotificationRow extends StatelessWidget {
                 )),
           ],
         ),
-      ),
     );
   }
 }

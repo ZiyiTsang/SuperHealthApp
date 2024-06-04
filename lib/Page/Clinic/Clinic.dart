@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:third/Model/Doctor.dart';
+
 import '../../Component/WorkoutRow.dart';
 import '../../Model/Appcolor.dart';
 import 'Map.dart';
@@ -25,8 +25,8 @@ class _ClinicPageState extends State<ClinicPage> {
   }
 }
 
-ListView _content(context,doctorlist,media) {
-  return ListView(
+Column _content(context, doctorlist, media) {
+  return Column(
     children: [
         EmbedMap(),
         doctorView(context,doctorlist,media),
@@ -36,7 +36,7 @@ ListView _content(context,doctorlist,media) {
 
 Container doctorView(context,doctorlist,media) {
   return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(children: [
     Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,8 +50,8 @@ Container doctorView(context,doctorlist,media) {
               fontWeight: FontWeight.w700),
         ),],
     ),
-    SizedBox(height: media.height * 0.02),
-    ListView.builder(
+        SizedBox(height: media.height * 0.005),
+        ListView.builder(
         padding: EdgeInsets.zero,
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
